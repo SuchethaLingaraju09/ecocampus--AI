@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoCampus AI - Smarter Campus. Greener Future. | DSU Code Clash 2.0</title>
+  <meta name="description" content="AI-Powered Sustainable Campus Command Center for DSU Code Clash 2.0. Visual incident triage, dynamic digital twin, grounded AI copilot, and defensible sustainability analytics.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Collapsible Accessible Sidebar -->
+    <aside class="sidebar" id="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <div class="brand-badge">
+          <div class="brand-icon">🌱</div>
+          <div>
+            <h1 class="brand-title">EcoCampus AI</h1>
+            <p class="brand-tagline">Smarter Campus. Greener Future.</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Operations Center</span>
+        <a href="#dashboard" class="nav-item active" data-view="dashboard">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="#digital-twin" class="nav-item" data-view="digital-twin">
+          <span class="nav-icon">🗺️</span>
+          <span>Digital Twin Map</span>
+        </a>
+        <a href="#report-issue" class="nav-item" data-view="report-issue">
+          <span class="nav-icon">📝</span>
+          <span>Report an Issue</span>
+        </a>
+        <a href="#issue-tracker" class="nav-item" data-view="issue-tracker">
+          <span class="nav-icon">🔍</span>
+          <span>Issue Ledger</span>
+        </a>
+
+        <span class="nav-section-label">AI & Sustainability</span>
+        <a href="#computer-vision" class="nav-item" data-view="computer-vision">
+          <span class="nav-icon">📷</span>
+          <span>Computer Vision</span>
+        </a>
+        <a href="#ai-copilot" class="nav-item" data-view="ai-copilot">
+          <span class="nav-icon">🤖</span>
+          <span>Grounded AI Copilot</span>
+        </a>
+        <a href="#sustainability-insights" class="nav-item" data-view="sustainability-insights">
+          <span class="nav-icon">📈</span>
+          <span>Impact & Insights</span>
+        </a>
+        <a href="#campus-action-plan" class="nav-item" data-view="campus-action-plan">
+          <span class="nav-icon">⚡</span>
+          <span>Campus Action Plan</span>
+        </a>
+
+        <span class="nav-section-label">Documentation</span>
+        <a href="#about-guide" class="nav-item" data-view="about-guide">
+          <span class="nav-icon">ℹ️</span>
+          <span>About & Judge Guide</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="hackathon-pill">
+          <strong>DSU Code Clash 2.0</strong>
+          <span>AI-Powered Sustainable Campus</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Application Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Sticky App Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-mobile-toggle" id="btn-mobile-nav" aria-label="Toggle navigation menu">☰</button>
+          <div class="page-title-wrap">
+            <h2>Campus Sustainability Command Center</h2>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Live Campus Alert Status -->
+          <div id="header-alert-badge" class="badge-header-alert alert-good">
+            🟢 Campus Normal
+          </div>
+
+          <!-- Demo Mode Indicator -->
+          <div class="demo-mode-indicator" title="Application running in standalone local demo mode with persistent storage">
+            <span class="demo-pulse-dot"></span>
+            <span>Local Demo Mode</span>
+          </div>
+
+          <!-- Quick Action Controls -->
+          <button class="btn btn-sm btn-outline" id="btn-run-tests-header" title="Execute automated self-tests across store and algorithms">
+            🧪 Run Tests
+          </button>
+          <button class="btn btn-sm btn-secondary" id="btn-reset-demo-header" title="Reset all data to default hackathon demo scenario">
+            ↺ Reset Demo
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Views Content Container -->
+      <main class="page-content">
+
+        <!-- ==========================================
+             VIEW 1: OVERVIEW DASHBOARD
+             ========================================== -->
+        <section class="view-section active-view" id="view-dashboard">
+          <!-- Top KPI Metrics Cards -->
+          <div class="dash-kpi-grid">
+            <div class="dash-kpi-card kpi-highlight">
+              <div class="kpi-header">
+                <span>Total Registered</span>
+                <span class="kpi-icon">📁</span>
+              </div>
+              <div class="kpi-number" id="dash-kpi-total">0</div>
+              <div class="kpi-subtext">All active & resolved reports</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div class="kpi-header">
+                <span>Active Unresolved</span>
+                <span class="kpi-icon">📌</span>
+              </div>
+              <div class="kpi-number" id="dash-kpi-active">0</div>
+              <div class="kpi-subtext">Pending field intervention</div>
+            </div>
+
+            <div class="dash-kpi-card kpi-critical-card">
+              <div class="kpi-header">
+                <span>Active & Critical Incidents</span>
+                <span class="kpi-icon">🚨</span>
+              </div>
+              <div class="kpi-number" id="dash-kpi-critical" style="color:var(--color-critical);">0</div>
+              <div class="kpi-subtext">P0 Immediate hazard level</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div class="kpi-header">
+                <span>Resolution Rate</span>
+                <span class="kpi-icon">✓</span>
+              </div>
+              <div class="kpi-number" id="dash-kpi-rate" style="color:var(--color-good);">0%</div>
+              <div class="kpi-subtext">Verified closed tickets</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div class="kpi-header">
+                <span>Est. Water Bleed</span>
+                <span class="kpi-icon">💧</span>
+              </div>
+              <div class="kpi-number" id="dash-kpi-bleed" style="color:#0284c7;">0 L</div>
+              <div class="kpi-subtext">Simulated unsealed leaks</div>
+            </div>
+          </div>
+
+          <!-- Mini Zone Health Quick Strip -->
+          <div class="zone-strip-wrapper">
+            <div class="zone-strip-title">Digital Twin Campus Zone Health Scores (Click to Inspect)</div>
+            <div class="zone-strip-grid" id="dash-zone-strip"></div>
+          </div>
+
+          <!-- Live Dynamic Canvas Charts Grid -->
+          <div class="charts-grid">
+            <div class="chart-card">
+              <div class="card-header-with-badge">
+                <div>
+                  <h3 class="card-title">Incidents by Category</h3>
+                  <p class="card-subtitle">Breakdown of reported environmental vectors</p>
+                </div>
+              </div>
+              <div class="chart-canvas-wrap">
+                <canvas id="chart-categories" class="chart-canvas"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="card-header-with-badge">
+                <div>
+                  <h3 class="card-title">Weekly Trend: Reported vs Resolved</h3>
+                  <p class="card-subtitle">Activity volume across the past 7 days</p>
+                </div>
+              </div>
+              <div class="chart-canvas-wrap">
+                <canvas id="chart-trend" class="chart-canvas"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="card-header-with-badge">
+                <div>
+                  <h3 class="card-title">Resolution Status Distribution</h3>
+                  <p class="card-subtitle">Current workflow stages of campus tickets</p>
+                </div>
+              </div>
+              <div class="chart-canvas-wrap">
+                <canvas id="chart-status" class="chart-canvas"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="card-header-with-badge">
+                <div>
+                  <h3 class="card-title">Zone Health Index Comparison</h3>
+                  <p class="card-subtitle">Comparative sustainability scores by sector</p>
+                </div>
+              </div>
+              <div class="chart-canvas-wrap">
+                <canvas id="chart-zones" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Incident Reports Feed -->
+          <div class="card-box">
+            <div class="card-header-with-badge">
+              <div>
+                <h3 class="card-title">Recent Field Incident Submissions</h3>
+                <p class="card-subtitle">Latest reports logged by students, staff, and facilities patrols</p>
+              </div>
+              <a href="#issue-tracker" class="btn btn-sm btn-outline nav-item" data-view="issue-tracker">View All in Ledger →</a>
+            </div>
+            <div class="dash-recent-list" id="dash-recent-issues"></div>
+          </div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 2: INTERACTIVE DIGITAL TWIN
+             ========================================== -->
+        <section class="view-section" id="view-digital-twin">
+          <div id="twin-map-mount"></div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 3: REPORT AN ISSUE
+             ========================================== -->
+        <section class="view-section" id="view-report-issue">
+          <div class="form-card">
+            <div class="card-header-with-badge">
+              <div>
+                <h3 class="card-title">Report a Campus Sustainability Incident</h3>
+                <p class="card-subtitle">Log water leaks, electrical waste, trash overflow, or cleanliness hazards to trigger automated dispatch.</p>
+              </div>
+              <span class="badge-user-tag">Community Action</span>
+            </div>
+
+            <form id="form-report-issue" novalidate>
+              <div class="form-group">
+                <label for="report-title">Incident Title *</label>
+                <input type="text" id="report-title" class="form-control" placeholder="e.g., Continuous Flush Valve Leak in 2nd Floor Restroom" required maxlength="120"/>
+                <span class="field-hint">Brief, recognizable headline describing the anomaly.</span>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="report-category">Sustainability Category *</label>
+                  <select id="report-category" class="form-control" required>
+                    <option value="water_leakage">💧 Water Leakage / Plumbing Hazard</option>
+                    <option value="electricity_wastage">⚡ Electricity Wastage / Lights / HVAC</option>
+                    <option value="waste_overflow">🗑️ Waste Overflow / Contamination</option>
+                    <option value="cleanliness">✨ Cleanliness & Sanitation</option>
+                    <option value="other">⚠️ Other Environmental Concern</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="report-zone">Campus Zone *</label>
+                  <select id="report-zone" class="form-control" required>
+                    <option value="zone-acad-a">Academic Block A (Lectures & Faculty)</option>
+                    <option value="zone-acad-b">Academic Block B (Labs & Tech)</option>
+                    <option value="zone-library">Central Library (Quiet Study & Stacks)</option>
+                    <option value="zone-cafeteria">Cafeteria & Food Court</option>
+                    <option value="zone-washrooms">Student Amenities & Washrooms</option>
+                    <option value="zone-sports">Sports Complex & Gymnasium</option>
+                    <option value="zone-garden">Central Green Garden & Bioswales</option>
+                    <option value="zone-parking">North & South Parking (Solar/EV)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="report-location">Specific Room / Location Landmark</label>
+                  <input type="text" id="report-location" class="form-control" placeholder="e.g., Room 302, West Wing Stairwell"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="report-severity">Severity & Hazard Assessment *</label>
+                  <select id="report-severity" class="form-control" required>
+                    <option value="low">Low (Aesthetic / non-urgent maintenance)</option>
+                    <option value="medium" selected>Medium (Standard resource waste / next shift repair)</option>
+                    <option value="high">High (Substantial waste / needs rapid attention)</option>
+                    <option value="critical">Critical (Immediate flooding / electrical danger / P0)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="report-desc">Detailed Description *</label>
+                <textarea id="report-desc" class="form-control" placeholder="Describe the physical condition, observable dripping speed, odors, or risks..." required></textarea>
+              </div>
+
+              <!-- Photo Upload & Client-side Preview -->
+              <div class="form-group">
+                <label>Evidence Photo (Optional)</label>
+                <div class="photo-upload-dropzone" id="photo-dropzone">
+                  <input type="file" id="report-photo-input" accept="image/png, image/jpeg, image/webp" class="visually-hidden"/>
+                  <label for="report-photo-input" style="cursor:pointer; display:block;">
+                    <div style="font-size:24px; margin-bottom:6px;">📸</div>
+                    <strong>Click to browse or drop an inspection photo</strong>
+                    <span class="field-hint">Processed 100% locally in your browser. Max 5MB (PNG, JPG, WebP).</span>
+                  </label>
+                </div>
+
+                <div class="photo-preview-wrapper" id="report-photo-preview-wrap" style="display:none;">
+                  <img src="" id="report-photo-preview" alt="Incident preview" class="photo-preview-thumbnail"/>
+                  <div>
+                    <strong>Photo Attachment Loaded</strong>
+                    <p class="text-xs text-muted">Client-side data URI ready to persist.</p>
+                    <div style="display:flex; gap:8px; margin-top:6px;">
+                      <button type="button" class="btn btn-sm btn-outline" id="btn-report-run-cv">🔍 Triage with Computer Vision</button>
+                      <button type="button" class="btn btn-sm btn-outline-danger" id="btn-remove-photo">Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="report-reporter-name">Reporter Name or Pseudonym</label>
+                  <input type="text" id="report-reporter-name" class="form-control" placeholder="e.g., Priya S. / GreenAmbassador_08"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="report-contact">Contact Email / Phone (Optional)</label>
+                  <input type="text" id="report-contact" class="form-control" placeholder="e.g., priya@campus.demo"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                  <input type="checkbox" id="report-anonymous"/>
+                  <span>Submit as Anonymous Campus Reporter</span>
+                </label>
+              </div>
+
+              <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+                <button type="reset" class="btn btn-secondary">Clear Fields</button>
+                <button type="submit" class="btn btn-primary">Submit Report to Operations →</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 4: ISSUE TRACKER & LEDGER
+             ========================================== -->
+        <section class="view-section" id="view-issue-tracker">
+          <div class="tracker-controls-bar">
+            <div class="tracker-search-row">
+              <input type="text" id="filter-search" class="form-control tracker-search-input" placeholder="🔍 Search incidents by ID, title, keyword, reporter, or location..."/>
+              <button class="btn btn-outline" id="btn-reset-filters">Reset Filters</button>
+            </div>
+
+            <div class="tracker-filter-row">
+              <select id="filter-category" class="filter-select">
+                <option value="all">All Categories</option>
+                <option value="water_leakage">Water Leakage</option>
+                <option value="electricity_wastage">Electricity Wastage</option>
+                <option value="waste_overflow">Waste Overflow</option>
+                <option value="cleanliness">Cleanliness</option>
+                <option value="other">Other</option>
+              </select>
+
+              <select id="filter-zone" class="filter-select">
+                <option value="all">All Campus Zones</option>
+                <option value="zone-acad-a">Academic Block A</option>
+                <option value="zone-acad-b">Academic Block B</option>
+                <option value="zone-library">Central Library</option>
+                <option value="zone-cafeteria">Cafeteria</option>
+                <option value="zone-washrooms">Washrooms</option>
+                <option value="zone-sports">Sports Complex</option>
+                <option value="zone-garden">Green Garden</option>
+                <option value="zone-parking">Parking & EV</option>
+              </select>
+
+              <select id="filter-severity" class="filter-select">
+                <option value="all">All Severities</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+
+              <select id="filter-status" class="filter-select">
+                <option value="all">All Statuses</option>
+                <option value="new">New</option>
+                <option value="under_review">Under Review</option>
+                <option value="assigned">Assigned</option>
+                <option value="resolved">Resolved</option>
+              </select>
+
+              <select id="filter-sort" class="filter-select">
+                <option value="newest">Sort: Newest First</option>
+                <option value="oldest">Sort: Oldest First</option>
+                <option value="severity">Sort: Highest Severity</option>
+                <option value="status">Sort: Workflow Status</option>
+              </select>
+
+              <div style="margin-left:auto; align-self:center;">
+                <span class="badge-demo-tag" id="filter-results-count">0 matched</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive-wrapper">
+            <table class="issues-table">
+              <thead>
+                <tr>
+                  <th>Incident ID</th>
+                  <th>Title & Location</th>
+                  <th>Category</th>
+                  <th>Zone</th>
+                  <th>Severity</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="issues-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 5: COMPUTER VISION TRIAGE
+             ========================================== -->
+        <section class="view-section" id="view-computer-vision">
+          <div id="cv-engine-mount"></div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 6: GROUNDED AI COPILOT
+             ========================================== -->
+        <section class="view-section" id="view-ai-copilot">
+          <div id="assistant-mount"></div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 7: SUSTAINABILITY INSIGHTS
+             ========================================== -->
+        <section class="view-section" id="view-sustainability-insights">
+          <div id="insights-mount"></div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 8: CAMPUS ACTION PLAN
+             ========================================== -->
+        <section class="view-section" id="view-campus-action-plan">
+          <div id="action-plan-mount"></div>
+        </section>
+
+
+        <!-- ==========================================
+             VIEW 9: ABOUT & JUDGE GUIDE
+             ========================================== -->
+        <section class="view-section" id="view-about-guide">
+          <div class="about-hero">
+            <h2 class="about-hero-title">EcoCampus AI</h2>
+            <div class="about-hero-subtitle">Smarter Campus. Greener Future.</div>
+            <p class="about-hero-text">
+              Built for <strong>DSU Code Clash 2.0</strong> (Problem Statement: <em>AI-Powered Sustainable Campus</em>).
+              EcoCampus AI is an enterprise-grade sustainability command center uniting visual incident triage,
+              a real-time 2D digital twin, grounded operational intelligence, and defensible resource calculations.
+            </p>
+          </div>
+
+          <!-- Mandatory AI Assisted Coding & Hackathon Rule Verification Box -->
+          <div class="card-box" style="border-left: 4px solid var(--color-forest-primary);">
+            <div class="card-header-with-badge">
+              <div>
+                <h3 class="card-title">⚖️ Hackathon Compliance & AI Transparency Declaration</h3>
+                <p class="card-subtitle">Permitted AI-assisted coding rules and attribution notice.</p>
+              </div>
+              <span class="badge-demo-tag">Compliance Verified</span>
+            </div>
+            <p style="font-size:0.84rem; line-height:1.6; color:var(--text-body);">
+              <strong>Ethical Notice to Judges & Participants:</strong> In accordance with DSU Code Clash 2.0 guidelines,
+              the participant has verified that AI-assisted design and scaffolding tools are permitted under hackathon regulations.
+              All algorithmic logic, heuristic rules, formulas, UI components, and mock architectures have been engineered transparently.
+              No proprietary or uncredited third-party code has been incorporated.
+            </p>
+          </div>
+
+          <!-- Three Pillars Architecture -->
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <div class="pillar-icon-box pillar-cv">📷</div>
+              <h3 class="card-title">1. Computer Vision Triage</h3>
+              <p style="font-size:0.8rem; color:var(--text-body); margin-top:6px; line-height:1.5;">
+                Provides photo-based visible-clue triage. Operates transparently with honest heuristic bounding cues and limitation disclosures. Explains that surface photos indicate anomalies but do not substitute for sub-surface meter telemetry.
+              </p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box pillar-twin">🗺️</div>
+              <h3 class="card-title">2. 2D Interactive Digital Twin</h3>
+              <p style="font-size:0.8rem; color:var(--text-body); margin-top:6px; line-height:1.5;">
+                An interactive vector schematic mapping 8 campus zones to a single source of truth. Every zone is keyboard accessible and dynamically reflects active incident counts, severity weighting, and health scores (0-100%).
+              </p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box pillar-ai">🤖</div>
+              <h3 class="card-title">3. Grounded AI Copilot</h3>
+              <p style="font-size:0.8rem; color:var(--text-body); margin-top:6px; line-height:1.5;">
+                A consultative sustainability assistant grounded strictly in current live campus state. Generates facilities morning briefings, analyzes emergency hotspots, and drafts SOPs without hallucinations or external privacy exposure.
+              </p>
+            </div>
+          </div>
+
+          <!-- Technical Disclosure Matrix -->
+          <div class="card-box">
+            <h3 class="card-title">Technical Disclosure Matrix: Real vs. Heuristic vs. Simulated</h3>
+            <p class="card-subtitle">An honest engineering breakdown for evaluation judges.</p>
+            
+            <table class="tech-disclosure-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>Implementation Reality</th>
+                  <th>Technical Transparency Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Incident CRUD & Audit Trail</strong></td>
+                  <td><span class="badge-good-pill" style="color:var(--color-good); font-weight:700;">100% Real</span></td>
+                  <td>Single source of truth with browser localStorage persistence, state subscriptions, and changelog history.</td>
+                </tr>
+                <tr>
+                  <td><strong>Digital Twin State Sync</strong></td>
+                  <td><span class="badge-good-pill" style="color:var(--color-good); font-weight:700;">100% Real</span></td>
+                  <td>Interactive SVG schematic dynamically re-computes health indices based on active issue weights in real time.</td>
+                </tr>
+                <tr>
+                  <td><strong>Computer Vision Triage</strong></td>
+                  <td><span class="badge-medium-pill" style="color:var(--color-medium); font-weight:700;">Transparent Heuristic</span></td>
+                  <td>Analyzes verified surface clues (pooling, overflow, luminaire status) and maps them via rules. Honestly labeled as demo triage, not neural inference.</td>
+                </tr>
+                <tr>
+                  <td><strong>Generative AI Copilot</strong></td>
+                  <td><span class="badge-medium-pill" style="color:var(--color-medium); font-weight:700;">Local Grounded Engine</span></td>
+                  <td>Derives actionable briefings and work orders strictly from in-memory incident records. Supports external LLM API via optional configuration.</td>
+                </tr>
+                <tr>
+                  <td><strong>Environmental Impact Calculator</strong></td>
+                  <td><span class="badge-good-pill" style="color:var(--color-good); font-weight:700;">Defensible Engineering Model</span></td>
+                  <td>Calculates resource loss using explicit formulas ($V = t \times \text{flow}$, $E = t \times \text{power}$). All assumptions are user-editable.</td>
+                </tr>
+                <tr>
+                  <td><strong>Campus Baseline Data</strong></td>
+                  <td><span class="badge-low-pill" style="color:var(--color-low); font-weight:700;">Simulated Demo Dataset</span></td>
+                  <td>Clear "DEMO" labels. Does not invent official DSU facilities telemetry.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 3-Minute Judge Demo Walkthrough -->
+          <div class="judge-script-box">
+            <h3 class="card-title">🎯 3-Minute Judge Demonstration Script</h3>
+            <p class="card-subtitle">Follow this step-by-step walkthrough to experience the complete integrated workflow:</p>
+
+            <div style="margin-top:16px;">
+              <div class="step-card">
+                <span class="step-badge">Minute 1: Overview & Interactive Digital Twin</span>
+                <p style="font-size:0.84rem; color:var(--text-body);">
+                  Navigate to the <strong>Overview Dashboard</strong> to view live KPIs, category donut, and weekly trends. 
+                  Next, click the <strong>Digital Twin Map</strong>. Notice that <em>Student Amenities & Washrooms</em> is highlighted in RED (Critical) 
+                  due to an active flush valve leak (`ECO-2026-001`). Click on the zone to inspect the live drawer, health score, and recommended actions.
+                </p>
+              </div>
+
+              <div class="step-card">
+                <span class="step-badge">Minute 2: Visual Triage & Dynamic Reporting</span>
+                <p style="font-size:0.84rem; color:var(--text-body);">
+                  Switch to <strong>Computer Vision</strong>. Pick the <em>"Cafeteria Overflowing Organics Bin"</em> preset or upload an image. 
+                  Observe the heuristic bounding box and clue checklist. Click <strong>"Transfer Diagnosis to Issue Report Form"</strong>. 
+                  Notice the form is pre-filled with category, severity, and photo. Hit <strong>Submit Report</strong> to watch the new issue instantly register!
+                </p>
+              </div>
+
+              <div class="step-card">
+                <span class="step-badge">Minute 3: Resolution Tracking, AI Copilot & Audit</span>
+                <p style="font-size:0.84rem; color:var(--text-body);">
+                  Open the <strong>Campus Action Plan</strong> or <strong>Issue Ledger</strong>. Open issue `ECO-2026-001` and mark its status as <strong>Resolved</strong>. 
+                  Return to the Digital Twin or Dashboard: the washroom zone instantly turns GREEN (Good) and health recovers to 100%! 
+                  Finally, open the <strong>Grounded AI Copilot</strong> and click <em>"Draft Facilities Morning Briefing"</em> to see an updated executive summary.
+                </p>
+              </div>
+            </div>
+
+            <div style="margin-top:16px; text-align:center;">
+              <button class="btn btn-primary" id="btn-run-tests-about">🧪 Run Automated Self-Test Suite Now</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       DETAILED ISSUE INSPECTION MODAL
+       ========================================== -->
+  <div class="modal-backdrop" id="issue-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-issue-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="badge-demo-tag" id="modal-issue-id">ECO-2026-000</span>
+          <h3 class="card-title" id="modal-issue-title" style="margin-top:4px;">Incident Details</h3>
+        </div>
+        <button class="btn-close-drawer" id="btn-close-issue-modal" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-meta-grid">
+          <div>
+            <span class="text-xs text-muted">Category:</span>
+            <div id="modal-issue-category" style="font-weight:700;">-</div>
+          </div>
+          <div>
+            <span class="text-xs text-muted">Campus Zone:</span>
+            <div id="modal-issue-zone" style="font-weight:700;">-</div>
+          </div>
+          <div>
+            <span class="text-xs text-muted">Assessed Severity:</span>
+            <div id="modal-issue-severity">-</div>
+          </div>
+          <div>
+            <span class="text-xs text-muted">Specific Location:</span>
+            <div id="modal-issue-location" style="font-weight:600;">-</div>
+          </div>
+          <div>
+            <span class="text-xs text-muted">Reporter:</span>
+            <div id="modal-issue-reporter">-</div>
+          </div>
+          <div>
+            <span class="text-xs text-muted">Logged Timestamp:</span>
+            <div id="modal-issue-created" style="font-size:0.75rem;">-</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <span class="text-xs text-muted uppercase font-bold">Issue Description:</span>
+          <p id="modal-issue-desc" style="font-size:0.86rem; color:var(--text-main); margin-top:4px; line-height:1.5;"></p>
+        </div>
+
+        <!-- Optional Photo Evidence Preview -->
+        <div class="modal-photo-container" id="modal-photo-wrap" style="display:none;">
+          <img src="" id="modal-photo-img" alt="Evidence photo" class="modal-photo-img"/>
+        </div>
+
+        <!-- Operations Workflow & Status Update Form -->
+        <div class="modal-action-box">
+          <h4 style="font-size:0.88rem; font-weight:800; color:#166534; margin-bottom:12px;">🛠️ Operations Dispatch & Status Control</h4>
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="modal-issue-status">Update Incident Status</label>
+              <select id="modal-issue-status" class="form-control">
+                <option value="new">New (Unreviewed)</option>
+                <option value="under_review">Under Review (Triage)</option>
+                <option value="assigned">Assigned (Team Dispatched)</option>
+                <option value="resolved">Resolved (Completed & Closed)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="modal-issue-team">Responsible Facilities Team</label>
+              <select id="modal-issue-team" class="form-control">
+                <option value="Facilities Management">Facilities Management</option>
+                <option value="Plumbing Maintenance">Plumbing Maintenance</option>
+                <option value="Electrical Maintenance">Electrical Maintenance</option>
+                <option value="Housekeeping & Waste Services">Housekeeping & Waste Services</option>
+                <option value="Grounds & Landscaping">Grounds & Landscaping</option>
+                <option value="Green Campus Committee">Green Campus Committee</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="modal-author-name">Operator / Officer Name</label>
+              <input type="text" id="modal-author-name" class="form-control" value="Facilities Dispatcher"/>
+            </div>
+
+            <div class="form-group">
+              <label for="modal-action-note">Operational Note / Work Order Ref</label>
+              <input type="text" id="modal-action-note" class="form-control" placeholder="e.g., Dispatched plumber; closed shut-off valve."/>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+            <button class="btn btn-outline-danger btn-sm" id="btn-modal-delete">🗑️ Delete Record</button>
+            <button class="btn btn-primary btn-sm" id="btn-modal-save-status">Save Workflow Changes</button>
+          </div>
+        </div>
+
+        <!-- Audit History Log -->
+        <div>
+          <h4 style="font-size:0.84rem; font-weight:700; color:var(--text-main);">📜 Incident Audit Trail & History</h4>
+          <div class="timeline-list" id="modal-history-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       AUTOMATED SELF-TEST MODAL
+       ========================================== -->
+  <div class="modal-backdrop" id="test-modal-backdrop" style="display:none;" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="card-title" id="test-modal-title">Automated System Test Results</h3>
+        <button class="btn-close-drawer" id="btn-close-test-modal" aria-label="Close test modal">✕</button>
+      </div>
+      <div class="modal-body" id="test-modal-body"></div>
+    </div>
+  </div>
+
+
+  <!-- Toast Notification Mount -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Application Bootstrap -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
